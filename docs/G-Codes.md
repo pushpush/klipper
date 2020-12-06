@@ -495,14 +495,14 @@ are enabled:
   turned off then back on.
 - `SET_TMC_CURRENT STEPPER=<name> CURRENT=<amps> HOLDCURRENT=<amps>`:
   This will adjust the run and hold currents of the TMC driver.
-  (HOLDCURRENT is not applicable to tmc2660 drivers.)
-- `SET_TMC_FIELD STEPPER=<name> FIELD=<field> VALUE=<value>`: This
-  will alter the value of the specified register field of the TMC
-  driver. This command is intended for low-level diagnostics and
-  debugging only because changing the fields during run-time can lead
-  to undesired and potentially dangerous behavior of your printer.
-  Permanent changes should be made using the printer configuration
-  file instead. No sanity checks are performed for the given values.
+  HOLDCURRENT is applicable only to the tmc2130, tmc2208, tmc2209 and tmc5160.
+- `SET_TMC_FIELD STEPPER=<name> FIELD=<field> VALUE=<value>`: This will
+  alter the value of the specified register field of the TMC driver.
+  This command is intended for low-level diagnostics and debugging only because
+  changing the fields during run-time can lead to undesired and potentially
+  dangerous behavior of your printer. Permanent changes should be made using
+  the printer configuration file instead. No sanity checks are performed for the
+  given values.
 
 ## Endstop adjustments by stepper phase
 
