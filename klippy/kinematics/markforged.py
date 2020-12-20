@@ -19,7 +19,7 @@ class MarkforgedKinematics:
         self.rails[1].get_endstops()[0][0].add_stepper(
             self.rails[0].get_steppers()[0])
         self.rails[0].setup_itersolve(
-            'markforged_stepper_alloc', self.second_axis, 'p')
+            'markforged_stepper_alloc', self.second_axis, 'n')
         self.rails[1].setup_itersolve('cartesian_stepper_alloc', 'y')
         self.rails[2].setup_itersolve('cartesian_stepper_alloc', 'z')
         for s in self.get_steppers():
@@ -78,7 +78,7 @@ class MarkforgedKinematics:
     def calc_tag_position(self):
         pos = [rail.get_tag_position() for rail in self.rails]
         if self.second_axis == 'y':
-            return [pos[0] + pos[1], pos[1], pos[2]]
+            return [pos[1] - pos[0], pos[1], pos[2]]
         elif self.second_axis == 'z':
             return [pos[0] + pos[2], pos[1], pos[2]]
     def set_position(self, newpos, homing_axes):
@@ -190,7 +190,7 @@ class MarkforgedKinematics:
         rail.setup_itersolve(
             'markforged_stepper_alloc',
             self.second_axis,
-            'w' if not active else 'p' if positive_dir else 'n')
+            'w' if not active else 'n' if positive_dir else 'p')
         rail.set_position(position)
         rail.set_trapq(toolhead.get_trapq())
     def _toggle_active_dc_rail(self, rail):
